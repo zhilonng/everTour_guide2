@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import my.application.MyApplication;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -36,6 +38,8 @@ public class Signin extends Activity {
 	String username, password;
 
 	Handler handler;
+	
+	Bundle data;
 
 	final String requestURL = UriAPI.guideSignin;
 
@@ -51,9 +55,13 @@ public class Signin extends Activity {
 			public void handleMessage(Message msg) {
 				super.handleMessage(msg);
 				switch (msg.what) {
-				case 0:
+				case 0:	//返回的结果
 					Toast.makeText(getApplicationContext(),
 							msg.getData().getString("result"),
+							Toast.LENGTH_LONG).show();
+				case 1:	//在屏幕弹出提醒消息
+					Toast.makeText(getApplicationContext(),
+							msg.getData().getString("text"),
 							Toast.LENGTH_LONG).show();
 				}
 			}
@@ -86,16 +94,40 @@ public class Signin extends Activity {
 					
 					@Override
 					public void run() {
+						
+						int guide_id = 0;
+						
 						String result = sendHttpRequest(username,password);
-						Message msg = new Message();
+						/*Message msg = new Message();
 						Bundle data = new Bundle();
 						data.putString("result",result);
 						msg.setData(data);
 						msg.what = 0;
-						handler.sendMessage(msg);
-						if(result.compareTo("succeed!") == 0)
+						handler.sendMessage(msg);*/
+						if(result.compareTo("failed") == 0)
 						{
-							startActivity(new Intent(getApplicationContext(),MainScreen.class));
+							print("密码错误");
+							return;
+						}
+						else if(result.compareTo("not exist!") == 0)
+						{
+							print("账号不存在");
+						}
+						else
+						{
+							try{
+							guide_id = Integer.valueOf(result);
+							}
+							catch(NumberFormatException e)
+							{
+								e.printStackTrace();
+								print("未知错误");
+							}
+							print("guide_id:" + guide_id);
+							Intent intent = new Intent(getApplicationContext(),MainScreen.class);
+							MyApplication myApp = (MyApplication)getApplicationContext();
+							myApp.guide_id = guide_id;
+							startActivity(intent);
 						}
 					}
 				});
@@ -133,5 +165,15 @@ public class Signin extends Activity {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	private void print(String text)
+	{
+		Message msg = new Message();
+		Bundle data = new Bundle();
+		data.putString("text", text);
+		msg.setData(data);
+		msg.what = 1;
+		handler.sendMessage(msg);
 	}
 }

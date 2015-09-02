@@ -1,11 +1,13 @@
 package com.example.evertour_guide;
 
+import my.application.MyApplication;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainScreen extends Activity{
 	
@@ -15,6 +17,8 @@ public class MainScreen extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mainscreen);
+
+		Toast.makeText(getApplicationContext(), MainScreen.class.getSimpleName(), Toast.LENGTH_LONG).show();
 		
 		initView();
 	}
@@ -26,7 +30,8 @@ public class MainScreen extends Activity{
 			
 			@Override
 			public void onClick(View arg0) {
-				startActivity(new Intent(getApplicationContext(),Profiles.class));
+				Intent intent = new Intent(getApplicationContext(),Profiles.class);
+				startActivity(intent);
 			}
 		});
 	}

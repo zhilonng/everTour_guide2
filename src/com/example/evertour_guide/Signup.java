@@ -142,7 +142,7 @@ public class Signup extends Activity {
 							msg.setData(data);
 							msg.what = 0;
 							handler.sendMessage(msg);
-							if(result.compareTo("succeed") == 0)
+							if(result.compareTo("succeed!") == 0)
 							{
 								startActivity(new Intent(getApplicationContext(), Signin.class));
 								finish();

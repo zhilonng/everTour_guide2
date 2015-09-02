@@ -3,25 +3,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-  
-
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="91dp"
-        android:text="Large Text"
+        android:text="选择日期"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <DatePicker
-        android:id="@+id/datePicker1"
+    <TextView
+        android:id="@+id/text_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="33dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="90dp"
+        android:text="开始日期"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    <TextView
+        android:id="@+id/text_end"
+        android:text="结束日期"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="90dp"
+        android:layout_marginRight="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+       />
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/text_start"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:text="点我选择\n开始日期" />
+
+    <Button
+        android:id="@+id/end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/text_end"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:text="点我选择\n结束日期" />
+
+    <Button
+        android:id="@+id/back"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="返回" />
+
+    <Button
+        android:id="@+id/finish"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="完成" />
+
+    <CalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="100dp"
+        android:layout_height="300dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/back" />
+    
 </RelativeLayout>
