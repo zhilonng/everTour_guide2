@@ -3,6 +3,8 @@ package com.example.evertour_guide;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -32,9 +34,9 @@ public class Signup extends Activity {
 
 	Button btnBack, btnSignup;
 	EditText edtUsername, edtPassword, edtPasswordAgain, edtSchool,
-			edtStudentId, edtRealName, edtEmail;
+			edtStudentId, edtRealName, edtEmail,edtIntroduction;
 	String username, password, passwordAgain, school, studentId, realName,
-			email;
+			email,introduction;
 
 	Handler handler;
 	
@@ -69,6 +71,7 @@ public class Signup extends Activity {
 		edtStudentId = (EditText)findViewById(R.id.student_id);
 		edtRealName = (EditText)findViewById(R.id.real_name);
 		edtEmail = (EditText)findViewById(R.id.email);
+		edtIntroduction = (EditText)findViewById(R.id.introduction);
 		
 		btnBack = (Button) findViewById(R.id.back);
 		btnBack.setOnClickListener(new OnClickListener() {
@@ -91,9 +94,39 @@ public class Signup extends Activity {
 				studentId = edtStudentId.getText().toString();
 				realName = edtRealName.getText().toString();
 				email = edtEmail.getText().toString();
+				introduction = edtIntroduction.getText().toString();
 
 				if (password.compareTo(passwordAgain) != 0) {
 					Toast.makeText(getApplicationContext(), "请输入一致的密码", Toast.LENGTH_LONG).show();
+					return;
+				}else if(username.length() < 1)
+				{
+					Toast.makeText(getApplicationContext(), "用户名的长度不能小于1", Toast.LENGTH_LONG).show();
+					return;
+				}
+				else if(password.length() < 8)
+				{
+					Toast.makeText(getApplicationContext(),"密码长度不能小于8",Toast.LENGTH_LONG).show();
+					return;
+				}
+				else if(school.length() == 0)
+				{
+					Toast.makeText(getApplicationContext(),"请输入学校名称",Toast.LENGTH_LONG).show();
+					return;
+				}
+				else if(studentId.length() == 0)
+				{
+					Toast.makeText(getApplicationContext(),"请输入学号",Toast.LENGTH_LONG).show();
+					return;
+				}
+				else if(realName.length() == 0)
+				{
+					Toast.makeText(getApplicationContext(),"请输入真实姓名",Toast.LENGTH_LONG).show();
+					return;
+				}
+				else if(isEmail(email) == false)
+				{
+					Toast.makeText(getApplicationContext(),"请输入正确的email地址",Toast.LENGTH_LONG).show();
 					return;
 				}
 				else 
@@ -132,6 +165,7 @@ public class Signup extends Activity {
 				params.add(new BasicNameValuePair("studentId", studentId));
 				params.add(new BasicNameValuePair("realname", realName));
 				params.add(new BasicNameValuePair("email", email));
+				params.add(new BasicNameValuePair("introduction",introduction));
 
 				try {
 					// 添加请求参数到请求对象
@@ -158,7 +192,7 @@ public class Signup extends Activity {
 										+ httpResponse.getStatusLine()
 												.toString(), Toast.LENGTH_LONG)
 								.show();
-						return null;
+						return "";
 					}
 				} catch (ClientProtocolException e) {
 					// Log.e("MainScreen:Http Post", e.getMessage().toString());
@@ -170,9 +204,19 @@ public class Signup extends Activity {
 					// Log.e("MainScreen:Http Post", e.getMessage().toString());
 					e.printStackTrace();
 				}
-				return null;
+				return "";
 
 			}
 		});
+	}
+	
+	private boolean isEmail(String strEmail) {
+
+		String strPattern = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
+
+		Pattern p = Pattern.compile(strPattern);
+		Matcher m = p.matcher(strEmail);
+		return m.matches();
+
 	}
 }

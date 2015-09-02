@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -38,6 +38,18 @@
         </activity>
         <activity 
             android:name="com.example.evertour_guide.MainScreen"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity 
+            android:name="com.example.evertour_guide.Profiles"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity 
+            android:name="com.example.evertour_guide.Timetable"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity 
+            android:name="com.example.evertour_guide.AddTimeslot"
             android:screenOrientation="portrait">
         </activity>
     </application>

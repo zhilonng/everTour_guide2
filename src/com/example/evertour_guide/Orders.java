@@ -1,7 +1,9 @@
 package com.example.evertour_guide;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -16,7 +18,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 public class Orders extends Activity {
 
@@ -24,6 +28,8 @@ public class Orders extends Activity {
 	Handler handler;
 
 	final String orderRequestURL = UriAPI.orderRequestURL;
+	protected List<NameValuePair> orderForm = new ArrayList<NameValuePair>();
+	ArrayList<Map<String,Object>> listData = new ArrayList<Map<String,Object>>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,10 @@ public class Orders extends Activity {
 				case 0:
 
 					break;
+					
+					//服务器列表读取完成
+				case 1:
+					setList();
 				}
 			}
 		};
@@ -51,12 +61,32 @@ public class Orders extends Activity {
 		Thread httpThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				String form = httpOrderRequest(0, 19);
+				orderForm = httpOrderRequest(0, 19);
+				Message msg = new Message();
+				msg.what = 1;
+				handler.sendMessage(msg);
 			}
 		});
+		httpThread.start();
+		
+		
 	}
 
-	private String httpOrderRequest(int start, int end) 
+	private void setList()
+	{
+		int length = orderForm.size();
+		for(int i = 0; i < length; i++)
+		{
+			Map<String,Object> item = new HashMap<String,Object>();
+			item.put("title",orderForm.get(i).getName());
+			item.put("text", orderForm.get(i).getValue());
+			listData.add(item);
+		}
+		SimpleAdapter adapter = new SimpleAdapter(this,listData,android.R.layout.simple_list_item_2,new String[]{"title","text"},new int[]{android.R.id.text1,android.R.id.text2});
+		orderList.setAdapter(adapter);
+	}
+	
+	private List httpOrderRequest(int start, int end) 
 	{
 		HttpPost httpPost = new HttpPost(orderRequestURL);
 
@@ -72,7 +102,7 @@ public class Orders extends Activity {
 					.execute(httpPost);
 
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
-				return EntityUtils.toString(httpResponse.getEntity());
+				return null;//EntityUtils.toString(httpResponse.getEntity());
 			}
 		} catch (Exception e) 
 		{

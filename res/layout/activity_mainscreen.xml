@@ -17,6 +17,24 @@
             android:layout_marginTop="132dp"
             android:text="我的对话" />
 
+        <Button
+            android:id="@+id/orders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialogs"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="订单" />
+
+        <Button
+            android:id="@+id/profiles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/dialogs"
+            android:layout_below="@+id/orders"
+            android:layout_marginTop="20dp"
+            android:text="我的信息" />
+
     </RelativeLayout>
     
 </ScrollView>

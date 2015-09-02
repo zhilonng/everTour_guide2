@@ -17,6 +17,7 @@ import org.apache.http.util.EntityUtils;
 
 import API.UriAPI;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -92,6 +93,10 @@ public class Signin extends Activity {
 						msg.setData(data);
 						msg.what = 0;
 						handler.sendMessage(msg);
+						if(result.compareTo("succeed!") == 0)
+						{
+							startActivity(new Intent(getApplicationContext(),MainScreen.class));
+						}
 					}
 				});
 				httpThread.start();
