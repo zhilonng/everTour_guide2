@@ -5,17 +5,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="387dp"
         android:orientation="vertical" >
-
-        <Button
-            android:id="@+id/timetable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:text="时间表" />
 
         <Button
             android:id="@+id/back"
@@ -24,6 +15,24 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:text="返回" />
+
+        <Button
+            android:id="@+id/timetable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/back"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="时间表" />
+
+        <Button
+            android:id="@+id/place_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timetable"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="地点列表" />
 
     </RelativeLayout>
     

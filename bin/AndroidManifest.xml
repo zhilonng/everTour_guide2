@@ -54,6 +54,14 @@
             android:name="com.example.evertour_guide.AddTimeslot"
             android:screenOrientation="portrait">
         </activity>
+        <activity 
+            android:name="com.example.evertour_guide.AddPlace"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity 
+            android:name="com.example.evertour_guide.PlaceList"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

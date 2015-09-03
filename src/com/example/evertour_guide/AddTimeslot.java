@@ -46,7 +46,7 @@ public class AddTimeslot extends Activity {
 	int sy,sm,sd,ey,em,ed;	//开始年份，开始月份，开始日，结束年份，结束月份，结束日
 	boolean bStart = false , bEnd = false;	//是否已经输入开始年份，结束年份
 	
-	final String addTimeslotURL = "http://evertour.sinaapp.com/guide_add_timeslot.php";
+	final String addTimeslotURL = API.UriAPI.timetableAddRequestURL;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

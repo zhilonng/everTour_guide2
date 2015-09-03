@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class Profiles extends Activity {
 	
-	Button btnTimetable;
+	Button btnTimetable,btnPlaceList;
 	Button btnBack;
 	
 	
@@ -38,6 +38,15 @@ public class Profiles extends Activity {
 			@Override
 			public void onClick(View v) {
 				finish();
+			}
+		});
+		
+		btnPlaceList = (Button)findViewById(R.id.place_list);
+		btnPlaceList.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(getApplicationContext(),PlaceList.class));
 			}
 		});
 	}

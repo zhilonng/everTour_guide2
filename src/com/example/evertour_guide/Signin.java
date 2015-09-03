@@ -104,6 +104,11 @@ public class Signin extends Activity {
 						msg.setData(data);
 						msg.what = 0;
 						handler.sendMessage(msg);*/
+						if(result == null)
+						{
+							print("Î´Öª´íÎó");
+							return;
+						}
 						if(result.compareTo("failed") == 0)
 						{
 							print("ÃÜÂë´íÎó");

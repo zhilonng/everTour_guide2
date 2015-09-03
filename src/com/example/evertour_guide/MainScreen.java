@@ -18,7 +18,7 @@ public class MainScreen extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mainscreen);
 
-		Toast.makeText(getApplicationContext(), MainScreen.class.getSimpleName(), Toast.LENGTH_LONG).show();
+//		Toast.makeText(getApplicationContext(), MainScreen.class.getSimpleName(), Toast.LENGTH_LONG).show();
 		
 		initView();
 	}
