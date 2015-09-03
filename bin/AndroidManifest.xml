@@ -47,8 +47,7 @@
         </activity>
         <activity 
             android:name="com.example.evertour_guide.Timetable"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask">
+            android:screenOrientation="portrait">
         </activity>
         <activity 
             android:name="com.example.evertour_guide.AddTimeslot"

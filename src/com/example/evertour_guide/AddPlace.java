@@ -19,6 +19,7 @@ import data.structor.ProvinceIdPos;
 import my.activity.MyActivity;
 import my.application.MyApplication;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -66,6 +67,7 @@ public class AddPlace extends MyActivity {
 			
 			@Override
 			public void onClick(View v) {
+				startActivity(new Intent(getApplicationContext(),PlaceList.class));
 				finish();
 			}
 		});
@@ -96,6 +98,7 @@ public class AddPlace extends MyActivity {
 							if(result.compareTo("succeed!") == 0)
 							{
 								print("Ìí¼Ó³É¹¦");
+								startActivity(new Intent(getApplicationContext(),PlaceList.class));
 								finish();
 							}
 							else if(result.compareTo("duplicate") == 0)

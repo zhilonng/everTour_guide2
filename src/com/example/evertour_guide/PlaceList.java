@@ -65,6 +65,7 @@ public class PlaceList extends MyActivity {
 			public void onClick(View v) {
 				startActivity(new Intent(getApplicationContext(),
 						AddPlace.class));
+				finish();
 			}
 		});
 
