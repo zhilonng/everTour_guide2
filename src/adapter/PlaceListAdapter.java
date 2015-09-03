@@ -20,6 +20,8 @@ import org.apache.http.util.EntityUtils;
 
 import time.TimeSlot;
 
+import base.adapter.MyBaseAdapter;
+
 import com.example.evertour_guide.R;
 
 import data.structor.ProvinceIdPos;
@@ -42,16 +44,35 @@ import android.widget.Toast;
 public class PlaceListAdapter extends MyBaseAdapter {
 
 	private LayoutInflater mInflater;
-
+	private List<String> provinceList,cityList;
 	
-	final String timetableDeleteRequestURL = API.UriAPI.timetableDeleteRequestURL;
+	final String deletePlaceRequestURL = API.UriAPI.deletePlaceRequestURL;
 	
-	
-	public PlaceListAdapter(final Context context,List<ProvinceIdPos> mData)
+	public PlaceListAdapter(final Context context,List<String> provinceList,List<String> cityList)
 	{
-		super(context,mData);
-		
+		super(context);
+		this.provinceList = provinceList;
+		this.cityList = cityList;
 	}
+	
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return provinceList.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return provinceList.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+	
 	
 	@Override
 	public View getView( int position, View convertView, ViewGroup parent) {
@@ -61,25 +82,21 @@ public class PlaceListAdapter extends MyBaseAdapter {
 		if(view == null)
 		{
 			LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			view = inflater.inflate(R.layout.timetable_item, null);
+			view = inflater.inflate(R.layout.list_item_place_list, null);
 		}
 		
-		/*TextView txtSP=(TextView)view.findViewById(R.id.text_start);
-		txtSP.setTextColor(Color.BLACK);
-		TextView txtEP=(TextView)view.findViewById(R.id.text_end);
-		txtEP.setTextColor(Color.BLACK);
-		final TextView txtStart = (TextView)view.findViewById(R.id.time_start);
-		txtStart.setText((CharSequence) text.get(index).get("time_start"));
-		txtStart.setTextColor(Color.BLACK);
-		final TextView txtEnd = (TextView)view.findViewById(R.id.time_end);
-		txtEnd.setText((CharSequence) text.get(index).get("time_end"));
-		txtEnd.setTextColor(Color.BLACK);
+		TextView txtPlace=(TextView)view.findViewById(R.id.textPlace);
+		txtPlace.setTextColor(Color.BLACK);
+		
+		txtPlace.setText(provinceList.get(index) + cityList.get(index));
+		
 		Button btnDelete = (Button)view.findViewById(R.id.delete);
 		btnDelete.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				mData.remove(index);
+				provinceList.remove(index);
+				final String cityToDelete = cityList.remove(index);
 				notifyDataSetChanged();
 				Thread deleteThread = new Thread(new Runnable() {
 					
@@ -91,17 +108,14 @@ public class PlaceListAdapter extends MyBaseAdapter {
 						List<NameValuePair> params = new ArrayList<NameValuePair>();
 						params.add(new BasicNameValuePair("guide_id", String
 								.valueOf(myApp.guide_id)));
-						ProvinceIdPos provinceIdPos = (ProvinceIdPos) mData.get(index);
-						int provinceId = provinceIdPos.id;
-						params.add(new BasicNameValuePair("province_id", String
-								.valueOf(provinceId)));
-						sendDeleteRequest(timetableDeleteRequestURL,params);
+						params.add(new BasicNameValuePair("city", cityToDelete));
+						sendDeleteRequest(deletePlaceRequestURL,params);
 					}
 				});
 				deleteThread.start();
 			}
 		});
-				*/
+				
 		return view;
 	}
 
@@ -144,15 +158,6 @@ public class PlaceListAdapter extends MyBaseAdapter {
 			e.printStackTrace();
 		}
 		return "";
-	}
-	
-	private void print(String text) {
-		Message msg = new Message();
-		Bundle data = new Bundle();
-		data.putString("text", text);
-		msg.setData(data);
-		msg.what = 1;
-		messageHandler.sendMessage(msg);
 	}
 
 }

@@ -3,5 +3,7 @@
 
     <string name="app_name">evertour_guide</string>
     <string name="action_settings">Settings</string>
+    <string name="promptProvince">请选择省份</string>
+    <string name="promptCity">请选择城市</string>
 
 </resources>

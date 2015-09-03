@@ -24,42 +24,43 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080023;
+        public static final int action_settings=0x7f080024;
         public static final int add=0x7f080001;
         public static final int back=0x7f080000;
+        public static final int button1=0x7f080021;
         public static final int calendar_view=0x7f08000c;
         public static final int city=0x7f080004;
         public static final int citySelector=0x7f080005;
-        public static final int delete=0x7f080020;
+        public static final int delete=0x7f08001f;
         public static final int dialogs=0x7f08000d;
-        public static final int email=0x7f08001d;
+        public static final int email=0x7f08001c;
         public static final int end=0x7f08000a;
         public static final int finish=0x7f08000b;
-        public static final int introduction=0x7f08001e;
-        public static final int listView1=0x7f080013;
+        public static final int introduction=0x7f08001d;
         public static final int orders=0x7f08000e;
         public static final int orders_list=0x7f080012;
-        public static final int password=0x7f080017;
-        public static final int password_again=0x7f080019;
-        public static final int place_list=0x7f080015;
+        public static final int password=0x7f080016;
+        public static final int password_again=0x7f080018;
+        public static final int place_list=0x7f080013;
         public static final int profiles=0x7f08000f;
         public static final int province=0x7f080002;
         public static final int provinceSelector=0x7f080003;
-        public static final int real_name=0x7f08001c;
-        public static final int school=0x7f08001a;
-        public static final int scrollView1=0x7f080018;
+        public static final int real_name=0x7f08001b;
+        public static final int school=0x7f080019;
+        public static final int scrollView1=0x7f080017;
         public static final int signin=0x7f080011;
         public static final int signup=0x7f080010;
         public static final int start=0x7f080009;
-        public static final int student_id=0x7f08001b;
+        public static final int student_id=0x7f08001a;
         public static final int text=0x7f080006;
+        public static final int textPlace=0x7f080020;
         public static final int text_end=0x7f080008;
         public static final int text_start=0x7f080007;
-        public static final int time_end=0x7f080022;
-        public static final int time_start=0x7f080021;
-        public static final int timelist=0x7f08001f;
+        public static final int time_end=0x7f080023;
+        public static final int time_start=0x7f080022;
+        public static final int timelist=0x7f08001e;
         public static final int timetable=0x7f080014;
-        public static final int username=0x7f080016;
+        public static final int username=0x7f080015;
     }
     public static final class layout {
         public static final int activity_add_place=0x7f030000;
@@ -85,6 +86,8 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int promptCity=0x7f050003;
+        public static final int promptProvince=0x7f050002;
     }
     public static final class style {
         /** 

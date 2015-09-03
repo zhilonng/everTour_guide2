@@ -10,6 +10,8 @@ public class UriAPI {
 	public static final String timetableDeleteRequestURL = "http://evertour.sinaapp.com/guide_delete_timeslot.php";
 	
 	public static final String addPlaceRequestURL = "http://evertour.sinaapp.com/guide_add_place.php";
-	public static final String getProvinceRequestURL = "http://evertour.sinaapp.com/get_province_list.php";
-	public static final String getPlaceListURL = "http://evertour.sinaapp.com/get_province_list.php";
+	public static final String getProvinceListRequestURL = "http://evertour.sinaapp.com/get_province_list.php";
+	public static final String getPlaceListURL = "http://evertour.sinaapp.com/get_place_list.php";
+	public static final String getCityListRequestURL = "http://evertour.sinaapp.com/get_city_list.php";
+	public static final String deletePlaceRequestURL = "http://evertour.sinaapp.com/guide_delete_place.php";
 }

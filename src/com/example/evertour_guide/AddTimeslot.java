@@ -114,7 +114,6 @@ public class AddTimeslot extends Activity {
 					data.putInt("em", em);
 					data.putInt("ed", ed);
 					intent.putExtras(data);*/
-					Intent intent = new Intent(getApplicationContext(),Timetable.class);
 					Thread addThread = new Thread(new Runnable() {
 						
 						@Override
@@ -123,6 +122,7 @@ public class AddTimeslot extends Activity {
 						}
 					});
 					addThread.start();
+					Intent intent = new Intent(getApplicationContext(),Timetable.class);
 					startActivity(intent);
 					finish();
 				}

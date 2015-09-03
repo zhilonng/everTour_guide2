@@ -1,10 +1,11 @@
-package adapter;
+package base.adapter;
 
 import java.util.List;
 import java.util.Map;
 
 import time.TimeSlot;
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -16,11 +17,9 @@ public class MyBaseAdapter extends BaseAdapter {
 
 	protected Context context;
 	protected Handler messageHandler;
-	List mData;
 
-	public MyBaseAdapter(final Context context,List mData) {
+	public MyBaseAdapter(final Context context) {
 		this.context = context;
-		this.mData = mData;
 		messageHandler = new Handler() {
 			@Override
 			public void handleMessage(Message msg) {
@@ -37,27 +36,40 @@ public class MyBaseAdapter extends BaseAdapter {
 		};
 	}
 
-	@Override
-	public int getCount() {
-		// TODO Auto-generated method stub
-		return mData.size();
-	}
-
-	@Override
-	public Object getItem(int position) {
-		// TODO Auto-generated method stub
-		return mData.get(position);
-	}
-
-	@Override
-	public long getItemId(int position) {
-		// TODO Auto-generated method stub
-		return position;
-	}
 	
 	@Override
 	public View getView( int position, View convertView, ViewGroup parent) {
 		return convertView;
+	}
+	
+	protected void print(String text) {
+		Message msg = new Message();
+		Bundle data = new Bundle();
+		data.putString("text", text);
+		msg.setData(data);
+		msg.what = 1;
+		messageHandler.sendMessage(msg);
+	}
+
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }
